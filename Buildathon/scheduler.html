@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Scheduler</title>
+    <link rel="stylesheet" href="scheduler.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Task Scheduler</h1>
+        <form id="schedulerForm">
+            <div id="taskList">
+                <div class="task-item">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" class="taskName" name="taskName" required>
+
+                    <label for="taskTime">Time:</label>
+                    <input type="time" class="taskTime" name="taskTime" required>
+                </div>
+            </div>
+            <button type="button" id="addTask">+ Add Task</button>
+            <button type="submit">Submit Tasks</button>
+        </form>
+    </div>
+
+    <script src="scheduler.js"></script>
+</body>
+
+
+</html>
