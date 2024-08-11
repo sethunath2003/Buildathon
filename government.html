@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheme Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .filter-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .scheme {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .scheme-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .scheme-details {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scheme Filter</h1>
+    <div class="filter-container">
+        <label for="age">Age:</label>
+        <select id="age" onchange="filterSchemes()">
+            <option value="">Select Age</option>
+            <option value="child">Child</option>
+            <option value="teen">Teen</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+        </select>
+        
+        <label for="purpose">Purpose:</label>
+        <select id="purpose" onchange="filterSchemes()">
+            <option value="">Select Purpose</option>
+            <option value="education">Education</option>
+            <option value="retirement">Retirement</option>
+            <option value="investment">Investment</option>
+            <option value="health">Health</option>
+            <option value="housing">Housing</option>
+        </select>
+    </div>
+
+    <div id="scheme-container" class="scheme-container">
+        <div class="scheme" data-age="child" data-purpose="education" 
+            onclick="showDetails('Child Education', 'This scheme is designed to support the education of children through scholarships and financial aid.')">
+            <a href="https://www.nsiindia.gov.in/(S(wb1nhb55cz01s455yn2jelqv))/InternalPage.aspx?Id_Pk=89" target="_blank" style="text-decoration: none; color: inherit;">
+                Sukanya Samridhi Scheme
+            </a>
+            
+        </div>
+
+        <div class="scheme" data-age="teen" data-purpose="health" 
+            onclick="showDetails('Scheme  - Aswasanidhi Scheme', 'This scheme offers a compensation for the victims of natural disasters and other calamities.')">
+            Aswasanidhi Scheme For Teenagers
+        </div>
+        <div class="scheme" data-age="adult" data-purpose="health" 
+            onclick="showDetails('Scheme 2 - Aswasanidhi Scheme', 'This scheme offers a compensation for the victims of natural disasters and other calamities.')">
+            Aswasanidhi Scheme for Adults
+        </div>
+        <div class="scheme" data-age="senior" data-purpose="health" 
+            onclick="showDetails('Scheme 2 - Aswasanidhi Scheme', 'This scheme offers a compensation for the victims of natural disasters and other calamities.')">
+            Aswasanidhi Scheme for Senior Citizens
+        </div>
+
+        <div class="scheme" data-age="adult" data-purpose="health" 
+            onclick="showDetails('Scheme 3 - Janani Shishu Kshema Scheme','entitles all pregnant women delivering in public health institutions to absolutely free and no expense delivery, including caesarean section.')">
+            Janani Shishu Kshema Scheme
+        </div>
+
+        <div class="scheme" data-age="teen" data-purpose="investment" 
+            onclick="showDetails('Scheme 4 - Orient Mahila Vikas Yojana','This scheme offers loans without collateral security and provides a concession on interest rates up to 2%')">
+            Orient Mahila Vikas Yojana
+        </div>
+
+        <div class="scheme" data-age="child" data-purpose="health" 
+            onclick="showDetails('Scheme 5 ','entitles all pregnant women delivering in public health institutions to absolutely free and no expense delivery, including caesarean section.')">
+            Janani Shishu Suraksha Karyam
+        </div>
+
+        <div class="scheme" data-age="adult" data-purpose="education" 
+            onclick="showDetails('Scheme 6 ','To provide financial assistance to selected candidates being Single Girl Child for pursuing Post-graduation on full time/regular basis in Universities/Institutes/Colleges in India.')">
+            Indira Gandhi Scholarship
+        </div>
+
+        <div class="scheme" data-age="adult" data-purpose="investment" 
+            onclick="showDetails('The Stand-Up India Scheme (CGSSI), also known as the Credit Guarantee Scheme Stand Up India,is a government scheme that provides collateral-free loans to entrepreneurs for setting up greenfield enterprises')">
+            Stand Up India
+        </div>
+
+        <div class="scheme" data-age="teen" data-purpose="investment" 
+            onclick="showDetails('Pradhan Mantri MUDRA Yojana (PMMY) is a scheme launched by the Honble Prime Minister on April 8, 2015 for providing loans up to 10 lakh to the non-corporate, non-farm small/micro enterprises')">
+            Mudra Yojana
+        </div>
+
+        <div class="scheme" data-age="adult" data-purpose="investment" 
+            onclick="showDetails('Tata AIG Insurance  ')">
+            Tata AIG Insurance
+        </div>
+
+        <div class="scheme" data-age="adult" data-purpose="investment" 
+            onclick="showDetails('Scheme 10 ')">
+            HDFC Life Investment Plan
+        </div>
+
+        <div class="scheme" data-age="senior" data-purpose="investment" 
+            onclick="showDetails('Scheme 11')">
+            Postal Life Insurance
+        </div>
+
+        <div class="scheme" data-age="teen" data-purpose="education" 
+            onclick="showDetails('Scheme 12 ')">
+          Pragathi AICTE  
+        </div>
+
+        </div>
+        <div class="scheme" data-age="child" data-purpose="health">
+            <a href="https://wcd.kerala.gov.in/scheme-info.php?id=Mg==" target="_blank" style="text-decoration: none; color: inherit;">
+                Aswasanidhi Scheme for Children
+            </a>
+        </div>
+    </div>
+
+    <div id="scheme-details" class="scheme-details" style="display: none;">
+        <h2 id="scheme-title"></h2>
+        <p id="scheme-description"></p>
+    </div>
+
+    <script>
+        function filterSchemes() {
+            const age = document.getElementById('age').value;
+            const purpose = document.getElementById('purpose').value;
+            const schemes = document.querySelectorAll('.scheme');
+
+            schemes.forEach(scheme => {
+                const schemeAge = scheme.getAttribute('data-age');
+                const schemePurpose = scheme.getAttribute('data-purpose');
+
+                if ((age === "" || schemeAge === age) && (purpose === "" || schemePurpose === purpose)) {
+                    scheme.style.display = "block";
+                } else {
+                    scheme.style.display = "none";
+                }
+            });
+        }
+
+        function showDetails(title, description) {
+            const detailsContainer = document.getElementById('scheme-details');
+            const titleElement = document.getElementById('scheme-title');
+            const descriptionElement = document.getElementById('scheme-description');
+
+            titleElement.textContent = title;
+            descriptionElement.textContent = description;
+
+            detailsContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
